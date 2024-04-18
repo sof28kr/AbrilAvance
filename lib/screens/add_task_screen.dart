@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sqflite_note_app_tutorial/database/tasks_database.dart';
 import 'package:sqflite_note_app_tutorial/extensions/extensions.dart';
 import 'package:sqflite_note_app_tutorial/models/task.dart';
+import 'package:sqflite_note_app_tutorial/screens/IngresoFirma.dart';
 
 final _formKey = GlobalKey<FormState>();
 
@@ -141,6 +143,15 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 ],
               ),
               const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Ingrese su Firma'),
+                  FilledButton(
+                      onPressed: () => context.push('/IngresoFirma'),
+                      child: Text('Registrar Firma')),
+                ],
+              ),
               ElevatedButton(
                 onPressed: addUpdateTask,
                 child: Text(widget.task != null ? 'Update Task' : 'Add Task'),

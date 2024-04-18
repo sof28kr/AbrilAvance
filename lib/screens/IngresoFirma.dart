@@ -14,7 +14,7 @@ class IngresoFirma extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.white,
         appBar: AppBar(
           title: Text("Ingreso de Firma"),
         ),
@@ -45,10 +45,6 @@ class IngresoFirma extends StatelessWidget {
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
                   onPressed: () => context.pop(),
                   child: Text("Volver")),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                  onPressed: () => context.push('/red'),
-                  child: Text("Ir a la pagina roja")),
             ],
           ),
         ));

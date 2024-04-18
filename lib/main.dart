@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:sqflite_note_app_tutorial/screens/IngresoFirma.dart';
+import 'package:sqflite_note_app_tutorial/screens/add_task_screen.dart';
 import 'package:sqflite_note_app_tutorial/screens/home_screen.dart';
 
 void main() {
@@ -10,10 +13,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      home: HomeScreen(),
+      routerConfig: GoRouter(initialLocation: '/Inicio', routes: [
+        GoRoute(
+          path: '/Lista_Participantes',
+          builder: (context, state) => AddTaskScreen(),
+        ),
+        GoRoute(
+          path: '/Inicio',
+          builder: (context, state) => HomeScreen(),
+        ),
+        GoRoute(
+          path: '/IngresoFirma',
+          builder: (context, state) => IngresoFirma(),
+        )
+      ]),
     );
   }
 }
