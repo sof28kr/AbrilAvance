@@ -66,9 +66,6 @@ class IngresoFirma extends StatelessWidget {
         Uint8List imagenuit = imageSignature.buffer.asUint8List();
         Image.memory(imagenuit);
 
-        Uint8List unit8List2 = Uint8List.fromList(imagenuit);
-        Image.memory(unit8List2);
-
         // 'uint8List' contiene los bytes de la imagen
       } else {
         // Maneja el caso en que 'byteData' sea nulo
