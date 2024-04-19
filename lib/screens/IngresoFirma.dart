@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 import 'dart:ui';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
@@ -61,14 +62,14 @@ class IngresoFirma extends StatelessWidget {
       final imageSignature =
           await image!.toByteData(format: ImageByteFormat.png);
 
-      // Process the image data as needed (e.g., save it, send it to a server, etc.)
-
       if (imageSignature != null) {
         Uint8List imagenuit = imageSignature.buffer.asUint8List();
         Image.memory(imagenuit);
-        // Ahora 'uint8List' contiene los bytes de la imagen
 
-        // Puedes usarlo según tus necesidades
+        Uint8List unit8List2 = Uint8List.fromList(imagenuit);
+        Image.memory(unit8List2);
+
+        // 'uint8List' contiene los bytes de la imagen
       } else {
         // Maneja el caso en que 'byteData' sea nulo
         print("La variable ByteData es nula.");
