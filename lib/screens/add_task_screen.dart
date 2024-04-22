@@ -6,6 +6,7 @@ import 'package:sqflite_note_app_tutorial/database/tasks_database.dart';
 import 'package:sqflite_note_app_tutorial/extensions/extensions.dart';
 import 'package:sqflite_note_app_tutorial/models/task.dart';
 import 'package:sqflite_note_app_tutorial/screens/IngresoFirma.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 final _formKey = GlobalKey<FormState>();
 
@@ -70,12 +71,11 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Task Screen'),
+        title: const Text('Agregar Participante'),
         actions: [
           IconButton(
             onPressed: () async {
               await TasksDatabase.instance.deleteTask(widget.task!.id!);
-
               Navigator.of(context).pop();
             },
             icon: const Icon(
@@ -96,13 +96,18 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               TextFormField(
+                onFieldSubmitted: (value) async {
+                  await Supabase.instance.client
+                      .from('Participantes')
+                      .insert({'nombre': value});
+                },
                 controller: _titleController,
                 decoration: const InputDecoration(
-                  hintText: 'Title',
+                  hintText: 'Nombre',
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please provide a title';
+                    return 'Por favor introduzca su Nombre';
                   }
                   return null;
                 },
@@ -111,11 +116,11 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               TextFormField(
                 controller: _descriptionController,
                 decoration: const InputDecoration(
-                  hintText: 'Description',
+                  hintText: 'Dni',
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please provide a title';
+                    return 'Por favor introduzca su Dni';
                   }
                   return null;
                 },
@@ -125,7 +130,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
-                    'Start Date: ',
+                    'Fecha de Registro: ',
                     style: TextStyle(fontSize: 17),
                   ),
                   TextButton(
